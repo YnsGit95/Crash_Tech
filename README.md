@@ -21,23 +21,23 @@ Le fichier CSV fourni utilise le point-virgule (`;`) comme séparateur de colonn
 
 Le fichier CSV fourni utilise le point-virgule (;) comme séparateur de colonnes. Chaque ligne correspond aux caractéristiques d'une victime impliquée dans un accident :
 
-year : l'année de l'accident.
+```year``` : l'année de l'accident.
 
-collision_id : numéro d'identification de l'accident.
+```collision_id``` : numéro d'identification de l'accident.
 
-vehicle_id : identifiant du véhicule impliqué.
+```vehicle_id``` : identifiant du véhicule impliqué.
 
-location : emplacement de la victime dans le véhicule (ex. 1 : conducteur, 2 : passager avant, 10 : piéton, etc.).
+```location``` : emplacement de la victime dans le véhicule (ex. 1 : conducteur, 2 : passager avant, 10 : piéton, etc.).
 
-user_type : type d'usager (1 : conducteur, 2 : passager, 3 : piéton).
+```user_type``` : type d'usager (1 : conducteur, 2 : passager, 3 : piéton).
 
-severity : gravité de l'accident pour la victime (1 : indemne, 2 : tué, 3 : blessé grave, 4 : blessé léger).
+```severity``` : gravité de l'accident pour la victime (1 : indemne, 2 : tué, 3 : blessé grave, 4 : blessé léger).
 
-gender : genre de la victime (1 : masculin, 2 : féminin, autre si non relevé).
+```gender``` : genre de la victime (1 : masculin, 2 : féminin, autre si non relevé).
 
-birth_year : année de naissance de la victime.
+```birth_year``` : année de naissance de la victime.
 
-purpose : type de trajet (-1/0 : non renseigné, 1 : domicile-travail, 2 : domicile-école, 3 : courses, 4 : déplacement professionnel, 5 : loisirs, 6+ : autres).
+```purpose``` : type de trajet (-1/0 : non renseigné, 1 : domicile-travail, 2 : domicile-école, 3 : courses, 4 : déplacement professionnel, 5 : loisirs, 6+ : autres).
 
 ---
 
