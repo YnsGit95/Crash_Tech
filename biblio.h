@@ -21,7 +21,7 @@ typedef struct vehicule{
 }Vehicule;
 
 typedef struct accident{
-    char[13] cle;
+    char cle[13];
     Vehicule* pVehicule;
     struct accident* fg;
     struct accident* fd;
