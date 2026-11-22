@@ -1,8 +1,21 @@
+#ifndef BIBLIO_H
+#define BIBLIO_H
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <time.h>
 #include <unistd.h>
+
+typedef enum{ 
+    MODE_INVALIDE, 
+    MODE_YEAR, 
+    MODE_AGE, 
+    MODE_CRASH,
+    MODE_QUITTER
+} Mode;
+
 
 typedef struct victime{
     int place; //1 pour les conducteurs, 2 pour les passagers à l’avant, 10 pour les pietons, autre pour d’autres emplacements
@@ -30,3 +43,6 @@ typedef struct accident{
 typedef struct {
     Accident* p;
 }pAccident;
+
+
+#endif
