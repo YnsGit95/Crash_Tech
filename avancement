@@ -10,4 +10,4 @@
 
 
 
-    +yanis:le menu de YEAR_DATA sur le makefile.
+    +yanis: Réalisé un menu globale pour Crash_Tech (menu.h/menu.c) pour facilité les commandes longues ON PEUT TJRS LANCER AVEC LES COMMANDES DE BASE, j'ai du crée un dossier data ou l'on stockera nos .csv pour les test et j'ai commencer à bosser sur le makefile.
