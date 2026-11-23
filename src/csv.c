@@ -1,16 +1,13 @@
-
 #include "csv.h"
-#include <string.h>
-#include <stdlib.h> //que pour la fonction atoi.
-
 
 int lire_ligne(char *texte, LigneCsv *res)
 {
     char *champs[9];   // champs[0] = début de la colonne 1 jusqu'a champs[8] = debut de la colonne 9
     char *p =texte;   // endroit où on est dans la ligne (on commence au début)
     
+    int i;
 
-    for (int i= 0;i<9; i++){      // On répète pour chacune des 9 colonnes
+    for (i = 0;i<9; i++){      // On répète pour chacune des 9 colonnes
         champs[i] = p;             // La colonne i commence ici
         p = strchr(p, ';');        // On cherche le ';' qui la termine
         if (p == NULL){           // Pas de ';' trouvé...
@@ -50,9 +47,4 @@ int lire_ligne(char *texte, LigneCsv *res)
     res->trajet = atoi(champs[8]);
 
 return 1;
-}
-
-  
-
-    return 1;                      // tout est bon
 }
