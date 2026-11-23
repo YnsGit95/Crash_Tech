@@ -17,4 +17,4 @@
 
    +problemes rencontres:-il manque un makefile pour separer les fichier (les fonctions et le main)
                         -manque de certaines fonctions comme la fonction liberer de l'avl
-                        -pour lire chauqe ligne 
+                        -pour lire chauqe ligne on eu une incertitude sur la maniere comment on peut le faire
