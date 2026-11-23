@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
-#include <unistd.h>
-
-#define ANNEE_MIN 2005 //a mettre dans year_data.h
-#define ANNEE_MAX 2024 //a mettre dans year_data.h
-#define NB_ANNEES 20 //a mettre dans year_data.h
-
-typedef enum{ 
-    MODE_INVALIDE, 
-    MODE_YEAR, 
-    MODE_AGE, 
-    MODE_CRASH,
-    MODE_QUITTER
-} Mode;
-
+#include "year_data.h"
 
 typedef struct victime{
     int place; //1 pour les conducteurs, 2 pour les passagers à l’avant, 10 pour les pietons, autre pour d’autres emplacements
@@ -51,10 +33,9 @@ typedef struct {
 
 //fct donnee_par_annee parcours infixe de l'avl pour recuperation des données (nombre d’accidents total = somme des accidents, Les nombres des différents types de severités = une variable par severité -> somme des victimes (dans les vehicules eux memes dans les accidents pour chaque années)
 
-//fct main demande a utilisateur, via menu, quelle est l’année pour laquelle il souhaite consulter les statistiques, puis si il veut consulter les stats d'un autre année ou quitter le programme
-
 //fct liberer_avl pour liberation memoire
 
+//fct main demande a utilisateur, via menu, quelle est l’année pour laquelle il souhaite consulter les statistiques, puis si il veut consulter les stats d'un autre année ou quitter le programme
 int main(){
     int choix = -1;
     Accident* tab_annee[NB_ANNEES];
@@ -98,7 +79,9 @@ int main(){
     
     printf("\n====================  YEAR_DATA  ====================\n");
     
-    //appel fct liberer_avl
+    for (i = 0, i++, i < NB_ANNEES){
+        //appel fct liberer_avl(i);
+    }
 
     return 0;
 }
