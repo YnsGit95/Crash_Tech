@@ -1,24 +1,47 @@
+# Compilateur et options
 CC      = gcc
-CFLAGS  = -Wall -Wextra -std=c99 -Iinclude
-SRC     = src/main.c src/menu.c src/utils.c
-OBJ     = $(SRC:src/%.c=obj/%.o)
-EXEC    = crashTech
+CFLAGS  = -Wall -Wextra -g -Iinclude
+LDFLAGS = -lm
+
+# Dossiers
+SRC_DIR = src
+OBJ_DIR = obj
+INC_DIR = include
+
+# Exécutable
+EXEC = crashTech
+
+# Modules du projet (les 3 traitements + les outils communs)
+SRCS = $(SRC_DIR)/main.c \
+       $(SRC_DIR)/csv.c \
+       $(SRC_DIR)/avl.c \
+       $(SRC_DIR)/utils.c \
+       $(SRC_DIR)/year_data.c \
+       $(SRC_DIR)/age_data.c \
+       $(SRC_DIR)/crash_data.c
+
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+# Tous les en-têtes : si un .h change, tout est recompilé
+HEADERS = $(wildcard $(INC_DIR)/*.h)
 
 all: $(EXEC)
 
-$(EXEC): $(OBJ)
-	$(CC) $^ -o $@
+# Édition de liens
+$(EXEC): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-obj/%.o: src/%.c include/*.h | obj
+# Compilation de chaque .c en .o (obj/ est créé si besoin)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-obj:
-	mkdir -p obj
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-run: $(EXEC)
-	./$(EXEC)
-
+# Nettoyage : supprime obj/ et l'exécutable
 clean:
-	rm -rf obj $(EXEC)
+	rm -rf $(OBJ_DIR) $(EXEC)
 
-.PHONY: all run clean
+rebuild: clean all
+
+.PHONY: all clean rebuild
