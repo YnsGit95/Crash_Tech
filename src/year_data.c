@@ -1,41 +1,16 @@
 #include "year_data.h"
+#include "csv.h"
+#include "menu.h"
 
-typedef struct victime{
-    int place; //1 pour les conducteurs, 2 pour les passagers à l’avant, 10 pour les pietons, autre pour d’autres emplacements
-    int genre; //1 masculin, 2 féminin, autre si non relevé ou autre genre
-    int age;
-    int gravite; //1 indemne, 2 tué, 3 blessé grave, 4 blessé léger
-    int type; //1 pour conducteur, 2 pour passager, 3 pour pieton
-    struct victime* suivant;
-}Victime;
 
-typedef struct vehicule{
-    int vehicule_id;
-    int purpose; //-1/0 : non renseigné, 1 :Domicile – travail, 2 Domicile – ecole, 3 Courses, 4 Déplacement professionnel, 5 loisirs, 6 et plus : autres
-    Victime* pVictime;
-    struct vehicule* suivant;
-}Vehicule;
+static void initialiser_stats(StatAnnee tab[]){
 
-typedef struct accident{
-    char cle[13];
-    Vehicule* pVehicule;
-    struct accident* fg;
-    struct accident* fd;
-}Accident;
+}
 
-typedef struct {
-    Accident* p;
-}pAccident;
+static unsigned long charg_annee(const char* chemin , StatAnnee tab[]){
 
-//fct tab_statique_annee créer tableau statique avec un avl par année
+}
 
-//fct tri_annee qui lit une ligne et trie la ligne dans les arbres d'année (un avl avec tout les accidents de 2005, un avl avec tout les accidents de 2006, un avl avec tout les accidents de 2007, un avl avec tout les accidents de 2008, ...)
-
-//fct donnee_par_annee parcours infixe de l'avl pour recuperation des données (nombre d’accidents total = somme des accidents, Les nombres des différents types de severités = une variable par severité -> somme des victimes (dans les vehicules eux memes dans les accidents pour chaque années)
-
-//fct liberer_avl pour liberation memoire
-
-//fct main demande a utilisateur, via menu, quelle est l’année pour laquelle il souhaite consulter les statistiques, puis si il veut consulter les stats d'un autre année ou quitter le programme
 int main(){
     int choix = -1;
     Accident* tab_annee[NB_ANNEES];
