@@ -5,12 +5,12 @@
 #include "menu.h"
 
 typedef struct{
-  unsigned int nb_accidents;
-  unsigned int nb_indemnes;
-  unsigned int nb_tues;
-  unsigned int nb_graves;
-  unsigned int nb_legers;
-} StatAnne;
+    unsigned int nb_accidents;
+    unsigned int nb_indemnes;
+    unsigned int nb_tues;
+    unsigned int nb_graves;
+    unsigned int nb_legers;
+} StatAnnee;
 
 void lancer_year_data(const char* chemin);
 
