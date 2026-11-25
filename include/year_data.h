@@ -2,6 +2,8 @@
 #define YEAR_DATA_H
 
 #include "biblio.h"
+#include "csv.h"
+#include "menu.h"
 
 typedef struct{
   unsigned int nb_accidents;
