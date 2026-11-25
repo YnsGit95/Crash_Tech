@@ -1,4 +1,39 @@
+#define _POSIX_C_SOURCE 200809L   /* pour getline */
 #include "csv.h"
+#include "utils.h"
+#include <ctype.h>
+
+
+/* Convertit une colonne en entier. Renvoie 0 si ce n'est pas un nombre */
+static int champ_entier(const char* champ, int* resultat) {
+    char* fin;
+    long valeur = strtol(champ, &fin, 10);
+    if (fin == champ || *fin != '\0')
+        return 0;
+    *resultat = (int)valeur;
+    return 1;
+}
+
+
+/* Pareil, mais une colonne vide est acceptée et vaut -1 (ex : année de naissance non renseignée) */
+static int champ_entier_optionnel(const char* champ, int* resultat) {
+    if (*champ == '\0') {
+        *resultat = -1;
+        return 1;
+    }
+    return champ_entier(champ, resultat);
+}
+
+
+/* Copie une colonne texte si elle rentre dans le tableau (sinon on refuse) */
+static int champ_texte(const char* champ, char* destination, size_t taille) {
+    size_t lg = strlen(champ);
+    if (lg == 0 || lg >= taille)
+        return 0;
+    strcpy(destination, champ);
+    return 1;
+}
+
 
 int lire_ligne(char *texte, LigneCsv *res)
 {
@@ -21,30 +56,33 @@ int lire_ligne(char *texte, LigneCsv *res)
         return 0; // la ligne est mauvaise
     }
 
-    // On convertit chaque colonne et on la range dans la structure
-    res->annee = atoi(champs[0]);
-
-     //pour mettre le champs 2 dans la structure
-    strncpy(res->collision_id, champs[1], 8);
-    res->collision_id[8] = '\0';
-   //pour mettre le  champs 3 dans la structure
-    strncpy(res->vehicule_id, champs[2], 3);
-    res->vehicule_id[3] = '\0';
-    
-   //pour mettre le champs 4 dans notre structure
-    res->place = atoi(champs[3]);
-    
-    //pour mettre le champs 5 dans notre structure
-    res->type = atoi(champs[4]);
-    //pour mettre le champs 6 dans notre structure
-    res->gravite = atoi(champs[5]);
-    
-    //pour mettre le champs 7 dans notre structure
-    res->genre = atoi(champs[6]);
-    //pour mettre le  champs 8 dans la structure
-     res->annee_naissance = atoi(champs[7]);
-    //pour mettre le champs 9 dans la structure
-    res->trajet = atoi(champs[8]);
+    if (!champ_entier(champs[0], &res->annee)){
+        return 0;
+    } 
+    if (!champ_texte(champs[1], res->collision_id, sizeof res->collision_id)){
+        return 0;
+    } 
+    if (!champ_texte(champs[2], res->vehicule_id, sizeof res->vehicule_id)){
+        return 0;
+    } 
+    if (!champ_entier(champs[3], &res->place)){
+        return 0;
+    } 
+    if (!champ_entier(champs[4], &res->type)){
+        return 0;
+    } 
+    if (!champ_entier(champs[5], &res->gravite)){
+        return 0;
+    } 
+    if (!champ_entier(champs[6], &res->genre)){
+        return 0;
+    }
+    if (!champ_entier_optionnel(champs[7], &res->annee_naissance)){
+        return 0;
+    } 
+    if (!champ_entier_optionnel(champs[8], &res->trajet)){
+        return 0;
+    } 
 
 return 1;
 }
@@ -70,10 +108,7 @@ void csv_ouvrir(LecteurCsv* lecteur, const char* chemin) {
     }
 }
 
-    
-
-
-//apres on va lire ligne parligne jusqua trouver une ligne correcte (sous le format quon voulait avoir) et on va le recuperer
+    //apres on va lire ligne parligne jusqua trouver une ligne correcte (sous le format quon voulait avoir) et on va le recuperer
 int csv_suivante(LecteurCsv* lecteur, LigneCsv* res) {
     while (getline(&lecteur->buffer, &lecteur->capacite, lecteur->fichier) != -1) {
         lecteur->num_ligne++;
@@ -90,5 +125,12 @@ int csv_suivante(LecteurCsv* lecteur, LigneCsv* res) {
     }
     return 0;                                           
 }
+
+
+void csv_fermer(LecteurCsv* lecteur) {
+    free(lecteur->buffer);
+    fclose(lecteur->fichier);
+}
+
 
 

@@ -2,14 +2,26 @@
 #include "utils.h"
 #include "menu.h"
 
-/*les modes seront branchés ici quand ils seront écrits */
+#include "biblio.h"
+#include "utils.h"
+#include "menu.h"
+#include "year_data.h"
+
+/* Les modes sont branchés ici au fur et à mesure */
 static void lancer_mode(Mode mode, const char* chemin) {
-    printf("\n  Mode %s sur le fichier %s : pas encore disponible.\n", nom_mode(mode), chemin);
+    switch (mode) {
+        case MODE_YEAR:
+            lancer_year_data(chemin);
+            break;
+        default:
+            printf("\n  Mode %s sur le fichier %s : pas encore disponible.\n", nom_mode(mode), chemin);
+            break;
+    }
 }
 
 int main(int argc, char* argv[]) {
-    /* ./crashTech YEAR_DATA data.csv  : lancement direct si on doit respecter comme la commande dans le sujet*/
-    if (argc == 3) {  
+    /* ./crashTech YEAR_DATA data.csv : lancement direct avec la commande */
+    if (argc == 3) {
         Mode mode = texte_vers_mode(argv[1]);
         if (mode == MODE_INVALIDE)
             erreur_fatale("Mode inconnu. Modes possibles : YEAR_DATA, AGE_DATA, CRASH_DATA");
@@ -17,7 +29,7 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
-    /* ./crashTech : et ici c'est ma touche perso parce que je trouve ca plus simple avec une menu intéractif */
+    /* ./crashTech : sans argument, on affiche un menu interactif (parceque oui je trouve ca plus cool) */
     if (argc == 1) {
         char chemin[512];
         Mode mode;

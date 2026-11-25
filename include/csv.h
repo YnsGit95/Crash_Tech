@@ -19,14 +19,14 @@ typedef struct {
 typedef struct{
     FILE* fichier;
     char* buffer;
-    size_t capactite;
+    size_t capacite;
     unsigned long num_ligne;
     unsigned long nb_ignorees;
 }LecteurCsv;
 
 int lire_ligne(char *texte, LigneCsv *res);   // Annonce la fonction : renvoie 1 si la ligne est bonne, 0 sinon
 void csv_ouvrir(LecteurCsv* lecteur, const char* chemin);
-int csv_suivant(LecteurCsv* lecteur, LigneCsv* res);
+int csv_suivante(LecteurCsv* lecteur, LigneCsv* res);
 void csv_fermer(LecteurCsv* lecteur);
 
 #endif             

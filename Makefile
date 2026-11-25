@@ -1,7 +1,7 @@
 # Compilateur et options
 CC      = gcc
 CFLAGS  = -Wall -Wextra -g -Iinclude
-LDFLAGS = -lm
+LDFLAGS =
 
 # Dossiers
 SRC_DIR = src
@@ -11,14 +11,12 @@ INC_DIR = include
 # Exécutable
 EXEC = crashTech
 
-# Modules du projet (les 3 traitements + les outils communs)
+# Modules compilés (on ajoute age_data, avl et crash_data quand ils seront prêts)
 SRCS = $(SRC_DIR)/main.c \
-       $(SRC_DIR)/csv.c \
-       $(SRC_DIR)/avl.c \
+       $(SRC_DIR)/menu.c \
        $(SRC_DIR)/utils.c \
-       $(SRC_DIR)/year_data.c \
-       $(SRC_DIR)/age_data.c \
-       $(SRC_DIR)/crash_data.c
+       $(SRC_DIR)/csv.c \
+       $(SRC_DIR)/year_data.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -38,10 +36,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+run: $(EXEC)
+	./$(EXEC)
+
 # Nettoyage : supprime obj/ et l'exécutable
 clean:
 	rm -rf $(OBJ_DIR) $(EXEC)
 
 rebuild: clean all
 
-.PHONY: all clean rebuild
+.PHONY: all run clean rebuild
