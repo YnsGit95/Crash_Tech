@@ -1,7 +1,4 @@
 #include "year_data.h"
-#include "csv.h"
-#include "menu.h"
-
 
 static void initialiser_stats(StatAnnee tab[]){
 
