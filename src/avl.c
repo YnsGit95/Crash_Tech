@@ -27,7 +27,7 @@ static int equilibre(noeud_avl_t *noeud) {
     return noeud ? (hauteurnoeud(noeud->gauche) - hauteurnoeud(noeud->droite)) : 0;
 }
 
-void insertion_avl(noeud_avl_t *noeud,int *valeur){
+void insertion_avl(noeud_avl_t *noeud,int *valeur){(a changer le parametre avl)
  if(noeud == NULL){
      return 0;
 }
