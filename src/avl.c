@@ -1,7 +1,7 @@
 #include "avl.h"
 
 struct noeud_avl {
-    victime *victime;
+    accident *Accident;
     int hauteur;
     struct noeud_avl *gauche;
     struct noeud_avl *droite;
