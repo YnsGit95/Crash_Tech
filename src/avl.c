@@ -7,8 +7,8 @@ struct noeud_avl {
     struct noeud_avl *droite;
 };
 
-pArbre creation_a+vl (){
-
+pArbre creation_avl (){
+ 
 }
 
 static int hauteurnoeud(noeud_avl_t *noeud) {
@@ -27,8 +27,17 @@ static int equilibre(noeud_avl_t *noeud) {
     return noeud ? (hauteurnoeud(noeud->gauche) - hauteurnoeud(noeud->droite)) : 0;
 }
 
-void insertion_avl(){
+void insertion_avl(noeud_avl_t *noeud,int *valeur){
+ if(noeud == NULL){
+     return 0;
+}
+if(noeud->valeur  > valeur){
+ insertion_avl(noeud->gauche,valeur);
+}else{
+ insertion_avl(noeud->droite,valeur);
+}
 
 }
+
 
 void liberer_avl
