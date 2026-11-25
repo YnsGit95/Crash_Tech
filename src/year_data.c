@@ -7,7 +7,7 @@ static void initialiser_stats(StatAnnee tab[]){
 
 }
 
-static unsigned long charg_annee(const char* chemin , StatAnnee tab[]){
+static unsigned long charger_annees(const char* chemin , StatAnnee tab[]){
 
 }
 
