@@ -48,3 +48,47 @@ int lire_ligne(char *texte, LigneCsv *res)
 
 return 1;
 }
+
+
+
+//on va ouvrir le fichier et initialisée notre nombre de ligne ainsi que la capacite a 0
+void csv_ouvrir(LecteurCsv* lecteur, const char* chemin) {
+    lecteur->fichier = fopen(chemin, "r");
+    if (lecteur->fichier == NULL)
+        erreur_fatale("Impossible d'ouvrir le fichier de données");
+    lecteur->buffer = NULL;
+    lecteur->capacite = 0;
+    lecteur->num_ligne = 0;
+    lecteur->nb_ignorees = 0;
+}
+//apres on retire les '\n' de fin de ligne et le '\r' qui est souvent présentdans des fichiers crées sur windows(on traite tous les cas pour que le code soit bien robuste 
+ void retirer_fin_ligne(char* ligne) {
+    size_t lg = strlen(ligne);
+    while (lg > 0 && (ligne[lg - 1] == '\n' || ligne[lg - 1] == '\r')) {
+        lg--;
+        ligne[lg] = '\0'; //c'est dans cette ligne on le remplace avec \0
+    }
+}
+
+    
+
+
+//apres on va lire ligne parligne jusqua trouver une ligne correcte (sous le format quon voulait avoir) et on va le recuperer
+int csv_suivante(LecteurCsv* lecteur, LigneCsv* res) {
+    while (getline(&lecteur->buffer, &lecteur->capacite, lecteur->fichier) != -1) {
+        lecteur->num_ligne++;
+        retirer_fin_ligne(lecteur->buffer);
+
+        if (lecteur->buffer[0] == '\0')
+            continue;                                 
+        if (lecteur->num_ligne == 1 && !isdigit((unsigned char)lecteur->buffer[0]))
+            continue;                                  
+
+        if (lire_ligne(lecteur->buffer, res))
+            return 1;
+        lecteur->nb_ignorees++;                         
+    }
+    return 0;                                           
+}
+
+
