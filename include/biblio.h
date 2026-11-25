@@ -8,6 +8,14 @@
 #include <time.h>
 #include <unistd.h>
 
+#define ANNEE_MIN 2005
+#define ANNEE_MAX 2024
+#define NB_ANNEES (ANNEE_MAX - ANNEE_MIN + 1)
+
+#define TAILLE_ID_VEHICULE 7
+#define TAILLE_ID_COLLISION 9
+
+
 typedef enum{ 
     MODE_INVALIDE, 
     MODE_YEAR, 
@@ -16,7 +24,7 @@ typedef enum{
     MODE_QUITTER
 } Mode;
 
-
+/*
 typedef struct victime{
     int place; //1 pour les conducteurs, 2 pour les passagers à l’avant, 10 pour les pietons, autre pour d’autres emplacements
     int genre; //1 masculin, 2 féminin, autre si non relevé ou autre genre
@@ -44,5 +52,6 @@ typedef struct {
     Accident* p;
 }pAccident;
 
+*/
 
 #endif
