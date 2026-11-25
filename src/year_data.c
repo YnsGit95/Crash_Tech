@@ -53,10 +53,5 @@ int main(){
     } while (choix != 0);
     
     printf("\n====================  YEAR_DATA  ====================\n");
-    
-    for (i = 0, i++, i < NB_ANNEES){
-        //appel fct liberer_avl(i);
-    }
-
     return 0;
 }
