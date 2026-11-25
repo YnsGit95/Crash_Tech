@@ -4,17 +4,19 @@
 
  +1er rendez_vous:
 
-    +lucien: -le main dans year data
-             -faire le plan des fonctions quêil faut faire,
+    +lucien: -creation des structures
+             -le main dans year data
+             -faire le plan des fonctions qu'il faut faire dans year data
 
     +amir : lecture de fichier csv .comment on l'a fait? on a decoupe dune ligne en 9 colonnes 
 
 
 
-    +yanis: Réalisé un menu globale pour Crash_Tech (menu.h/menu.c) pour facilité les commandes longues ON PEUT TJRS LANCER AVEC LES COMMANDES DE BASE, j'ai du crée un dossier data ou l'on stockera nos .csv pour les test et j'ai commencer à bosser sur le makefile.
+    +yanis: Réalisé un menu global pour Crash_Tech (menu.h/menu.c) pour facilité les commandes longues ON PEUT TJRS LANCER AVEC LES COMMANDES DE BASE, j'ai du crée un dossier data ou l'on stockera nos .csv pour les test et j'ai commencer à bosser sur le makefile.
 
 
 
    +problemes rencontres:-il manque un makefile pour separer les fichier (les fonctions et le main)
-                        -manque de certaines fonctions comme la fonction liberer de l'avl
-                        -pour lire chauqe ligne on eu une incertitude sur la maniere comment on peut le faire
+                        -manque de certaines fonctions comme la fonction liberation de l'avl
+                        -pour lire chaque ligne on eu une incertitude sur la maniere comment on peut le faire
+                        - difficulté dans year_data, premiere av
