@@ -2,10 +2,15 @@
 #define YEAR_DATA_H
 
 #include "biblio.h"
-#include "csv.h"
 
-#define ANNEE_MIN 2005
-#define ANNEE_MAX 2024
-#define NB_ANNEES 20
+typedef struct{
+  unsigned int nb_accidents;
+  unsigned int nb_indemnes;
+  unsigned int nb_tues;
+  unsigned int nb_graves;
+  unsigned int nb_legers;
+} StatAnne;
+
+void lancer_year_data(const char* chemin);
 
 #endif
